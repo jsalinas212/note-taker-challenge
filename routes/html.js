@@ -2,7 +2,7 @@ const router = require("express").Router();
 const path = require("path");
 
 // Get notes HTML
-router.get("/notes", (res) => {
+router.get("/notes", (req, res) => {
     // Send notes.html as response
     res.sendFile(path.join(__dirname, "../public/notes.html"));
 });
@@ -10,7 +10,7 @@ router.get("/notes", (res) => {
 // Get index.html
 router.get("*", (req, res) => {
     // Send index.html as response
-    res.sendFile(path.join(__dirnam, "../public/index.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 module.exports = router;

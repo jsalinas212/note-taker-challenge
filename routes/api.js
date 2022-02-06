@@ -1,16 +1,16 @@
 const router = require("express").Router();
 const fs = require("fs");
-const db = require("../db/db.json");
+let db = require("../db/db.json");
 
 // Get request to notes route
-router.get("/notes", (res) => {
+router.get("/notes", (req, res) => {
     // Read from db.json and pull data as JSON
-    db = JSON.parse(fs.readFileSync("../db/db.json", "utf-8"));
+    db = JSON.parse(fs.readFileSync("./db/db.json", "utf-8"));
     res.json(db);
 });
 
 // Post request to notes route
-router.post("/notes", (req,res) => {
+router.post("/notes", (req, res) => {
     // Note object
     let newNote = {
         title: req.body.title,
@@ -20,7 +20,7 @@ router.post("/notes", (req,res) => {
 
     // Push note to DB and update db.json file
     db.push(newNote);
-    fs.writeFileSync("../db/db.json", JSON.stringify(db));
+    fs.writeFileSync("./db/db.json", JSON.stringify(db));
     res.json(db);
 });
 
